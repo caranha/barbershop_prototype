@@ -1,4 +1,7 @@
 barbershop_prototype
 ====================
 
-Prototype for Barbershop Game
+This is a technical prototype for the "Barbershop Game", 
+being developed by the "Tokyo Games" Group. 
+
+Nothing to see here, move along :-)
