@@ -1,0 +1,20 @@
+Feature Requests
+
+* General
+  - [ ] Make Height and Width dependent on the device.
+  - [ ] Add a "level control" class, which loads level parameters from a file
+    (or generates them based on difficulty?)
+  - [ ] Add particules for "great cut!", "OK cut" when the player
+    touches the target zone.
+  - [ ] Add sounds for cutting
+  - [ ] Replace Hair with drawings
+  - [ ] Cancel stage when the score gets too negative.
+
+* Leon (06/09)
+  - [X] Reduce Hair Density (by about 10 times)
+  - [X] Increase Hit Zone, Add Secondary Hit Zone OK
+  - [X] Add score to the screen (hit zone: 3 points, secondary 1 point,
+    skin -1 point) OK
+  - [X] Add an end to the Prototype (30 seconds) OK
+
+

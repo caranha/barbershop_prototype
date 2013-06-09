@@ -64,6 +64,7 @@ public class SkinManager {
 		if (Intersector.pointLineSide(skinlist.get(i-1), skinlist.get(i), c.blade.position)==1)
 		{
 			c.blood.addBlood(c.blade.position);
+			c.addScore(-2*delta);
 		}
 	}
 	

@@ -14,7 +14,8 @@ public class HairManager {
 	float lenmin;
 	float lendelta;
 	float angledelta;
-	float yspace;
+	int minyspace;
+	int deltayspace;
 	
 	Array<StandardHair> hlist;
 	
@@ -33,7 +34,8 @@ public class HairManager {
 		lenmin = 350;
 		lendelta = 50;
 		angledelta = 5;
-		yspace = 15;
+		minyspace = 50;
+		deltayspace = 150;
 		
 		// Generate the first few vectors;
 		hlist.clear();
@@ -41,9 +43,9 @@ public class HairManager {
 		
 		while (county < PrototypeMain.HEIGHT+200)
 		{
-			county += yspace+dice.nextInt(5); 			
+			county += minyspace+dice.nextInt(deltayspace); 			
 			Vector2 pos = new Vector2(50+dice.nextInt(10),county);
-			hlist.add(new StandardHair(pos,lenmin+dice.nextFloat()*lendelta,((dice.nextFloat()*0.2f)+0.4f)*lenmin));
+			hlist.add(new StandardHair(pos,lenmin+dice.nextFloat()*lendelta,((dice.nextFloat()*0.2f)+0.1f)*lenmin));
 		}
 	}
 	
@@ -54,9 +56,9 @@ public class HairManager {
 		{
 			hlist.removeIndex(0);
 			float lasty = hlist.get(hlist.size-1).position.y;
-			hlist.add(new StandardHair(new Vector2(50+dice.nextInt(10),lasty+yspace+dice.nextInt(5)),
+			hlist.add(new StandardHair(new Vector2(50+dice.nextInt(10),lasty+minyspace+dice.nextInt(deltayspace)),
 													lenmin+dice.nextFloat()*lendelta,
-													((dice.nextFloat()*0.2f)+0.4f)*lenmin));
+													((dice.nextFloat()*0.2f)+0.1f)*lenmin));
 		}
 		
 		// Test Collision with the blade
@@ -72,7 +74,16 @@ public class HairManager {
 			//th.update((dice.nextFloat()-0.5f)*angledelta);
 						
 			if (Intersector.intersectSegments(th.position, th.endpos, c.blade.position, cutdir, cutpos))
+			{
 				th.cut(cutpos);
+				float dst = cutpos.dst(th.targetpos);
+				
+				// FIXME: this should not be hardcoded
+				if (dst < 5)
+					c.addScore(3);
+				else if (dst < 15)
+					c.addScore(1);		
+			}
 		}
 	}
 	
@@ -90,12 +101,17 @@ public class HairManager {
 		linedrawer.end();
 		
 		linedrawer.begin(ShapeType.Circle);
-		linedrawer.setColor(Color.RED);
+
 		for (int i = 0; i < hlist.size; i++)
 			{
 				StandardHair th = hlist.get(i);
 				if (th.isCut == false)
-					linedrawer.circle(th.targetpos.x, th.targetpos.y, 3);
+				{
+					linedrawer.setColor(Color.RED);
+					linedrawer.circle(th.targetpos.x, th.targetpos.y, 5);
+					linedrawer.setColor(Color.ORANGE);
+					linedrawer.circle(th.targetpos.x, th.targetpos.y, 15);
+				}
 			}
 		linedrawer.end();
 	}
