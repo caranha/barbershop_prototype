@@ -34,6 +34,7 @@ public class TitleScreen implements Screen {
 		if (parent.gamescreen.initialized)
 		{
 			scoreFont.draw(batch, "Best Score: "+ (int) Math.floor((double)parent.gamescreen.c.maxscore), 90, 360);
+			scoreFont.draw(batch, "Last Score: "+ (int) Math.floor((double)parent.gamescreen.c.score), 90, 330);
 		}
 		batch.end();
 
