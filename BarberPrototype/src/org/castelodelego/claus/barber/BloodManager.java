@@ -43,12 +43,19 @@ public class BloodManager {
 	public void draw(LevelContext c)
 	{
 		linedrawer.setProjectionMatrix(c.camera.combined);
-		linedrawer.begin(ShapeType.FilledCircle);
+		
+		//giving errors, so commenting out for now
+		//linedrawer.begin(ShapeType.FilledCircle);
+		linedrawer.begin(ShapeType.Filled);
+		
 		for (int i = 1; i < blist.size; i++)
 		{
 			BloodSpot t = blist.get(i);
 			linedrawer.setColor(1, 0, 0, (t.maxage - t.age/2)/t.maxage);
-			linedrawer.filledCircle(t.pos.x, t.pos.y, t.age*30);
+			
+			//giving errors, so commenting out for now
+			//linedrawer.filledCircle(t.pos.x, t.pos.y, t.age*30);
+			linedrawer.circle(t.pos.x, t.pos.y, t.age*30);
 		}
 		linedrawer.end();		
 	}

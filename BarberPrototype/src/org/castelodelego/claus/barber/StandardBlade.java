@@ -94,7 +94,10 @@ public class StandardBlade {
 		
 		// Drawing Guide point
 		linedrawer.setProjectionMatrix(c.camera.combined);
-		linedrawer.begin(ShapeType.Circle);
+		
+		//giving errors, so changed from Circle to Filledfor now
+		linedrawer.begin(ShapeType.Filled);
+		
 		linedrawer.setColor(Color.BLACK);
 		linedrawer.circle(position.x, position.y, 2);
 		linedrawer.end();
