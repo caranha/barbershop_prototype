@@ -30,7 +30,7 @@ public class TitleScreen implements Screen {
 		
 		batch.begin();
 		scoreFont.setColor(Color.GRAY);
-		scoreFont.draw(batch, "Press Space to Begin", 40, 400);
+		scoreFont.draw(batch, "Press Space to ROCK!", 40, 400);
 		if (parent.gamescreen.initialized)
 		{
 			scoreFont.draw(batch, "Best Score: "+ (int) Math.floor((double)parent.gamescreen.c.maxscore), 90, 360);
